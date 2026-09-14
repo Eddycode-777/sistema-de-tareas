@@ -3,6 +3,7 @@ Controller: TareaController
 Responsable: Gestiona las rutas HTTP y coordina operaciones con el modelo Tarea.
 """
 
+# pyrefly: ignore [missing-import]
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app.models.tarea import Tarea
 
@@ -35,11 +36,17 @@ def crear():
             flash("El título es obligatorio.", "error")
             return render_template("tareas/crear.html", titulo=titulo, descripcion=descripcion)
 
+
         if len(titulo) > 120:
             flash("El título no puede superar los 120 caracteres.", "error")
             return render_template("tareas/crear.html", titulo=titulo, descripcion=descripcion)
 
+        if len(descripcion) > 500:
+            flash("La descripción no puede superar los 500 caracteres.", "error")
+            return render_template("tareas/crear.html", titulo=titulo, descripcion=descripcion)
+
         Tarea.crear(titulo, descripcion)
+
         flash(f"Tarea '{titulo}' creada exitosamente.", "success")
         return redirect(url_for("tareas.lista"))
 
