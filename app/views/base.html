@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema web para gestionar tareas personales con seguimiento de estado.">
+    <title>{% block titulo %}Sistema de Tareas{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <a href="{{ url_for('tareas.lista') }}" class="navbar-brand">
+            &#10003; Sistema de Tareas
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="{{ url_for('tareas.lista') }}">Mis Tareas</a></li>
+            <li><a href="{{ url_for('tareas.crear') }}">+ Nueva Tarea</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alertas">
+                    {% for category, message in messages %}
+                        <div class="alerta alerta-{{ category }}">
+                            {% if category == 'success' %}✓{% elif category == 'error' %}✕{% else %}ℹ{% endif %}
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block contenido %}{% endblock %}
+
+    </main>
+
+    <footer>
+        <p>Sistema de Gestión de Tareas &mdash; Proyecto de Ingeniería de Software</p>
+    </footer>
+
+</body>
+</html>

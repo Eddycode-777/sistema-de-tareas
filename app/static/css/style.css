@@ -1,0 +1,373 @@
+/* ============================================================
+   Sistema de Gestión de Tareas — Hoja de estilos principal
+   ============================================================ */
+
+/* ---------- Variables y reset ---------- */
+:root {
+    --color-primario: #2563eb;
+    --color-primario-hover: #1d4ed8;
+    --color-peligro: #dc2626;
+    --color-peligro-hover: #b91c1c;
+    --color-exito: #16a34a;
+    --color-info: #0284c7;
+    --color-advertencia: #d97706;
+    --color-fondo: #f1f5f9;
+    --color-superficie: #ffffff;
+    --color-borde: #e2e8f0;
+    --color-texto: #1e293b;
+    --color-texto-secundario: #64748b;
+    --radio-borde: 8px;
+    --sombra: 0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+    --sombra-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    --fuente: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ---------- Barra de navegación ---------- */
+.navbar {
+    background-color: var(--color-primario);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    box-shadow: var(--sombra-md);
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand:hover {
+    color: #dbeafe;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+}
+
+.navbar-nav a {
+    color: #bfdbfe;
+    text-decoration: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radio-borde);
+    font-size: 0.9rem;
+    transition: background 0.15s, color 0.15s;
+}
+
+.navbar-nav a:hover {
+    background: rgba(255,255,255,0.15);
+    color: #ffffff;
+}
+
+/* ---------- Layout principal ---------- */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* ---------- Alertas flash ---------- */
+.alertas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.alerta {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radio-borde);
+    font-size: 0.9rem;
+    border-left: 4px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.alerta-success {
+    background: #f0fdf4;
+    border-color: var(--color-exito);
+    color: #166534;
+}
+
+.alerta-error {
+    background: #fef2f2;
+    border-color: var(--color-peligro);
+    color: #991b1b;
+}
+
+.alerta-info {
+    background: #f0f9ff;
+    border-color: var(--color-info);
+    color: #075985;
+}
+
+/* ---------- Tarjeta ---------- */
+.card {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-texto);
+}
+
+/* ---------- Tabla de tareas ---------- */
+.tabla-tareas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-tareas thead th {
+    background: var(--color-fondo);
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid var(--color-borde);
+}
+
+.tabla-tareas tbody tr {
+    border-bottom: 1px solid var(--color-borde);
+    transition: background 0.12s;
+}
+
+.tabla-tareas tbody tr:hover {
+    background: #f8fafc;
+}
+
+.tabla-tareas tbody td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+.tabla-tareas .acciones {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+/* ---------- Badges de estado ---------- */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.badge-pendiente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-completada {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.45rem 0.9rem;
+    border: none;
+    border-radius: var(--radio-borde);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primario {
+    background: var(--color-primario);
+    color: #ffffff;
+}
+.btn-primario:hover { background: var(--color-primario-hover); color: #ffffff; }
+
+.btn-peligro {
+    background: var(--color-peligro);
+    color: #ffffff;
+}
+.btn-peligro:hover { background: var(--color-peligro-hover); color: #ffffff; }
+
+.btn-secundario {
+    background: #ffffff;
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+}
+.btn-secundario:hover { background: var(--color-fondo); }
+
+.btn-exito {
+    background: var(--color-exito);
+    color: #ffffff;
+}
+.btn-exito:hover { background: #15803d; color: #ffffff; }
+
+.btn-info {
+    background: var(--color-info);
+    color: #ffffff;
+}
+.btn-info:hover { background: #0369a1; color: #ffffff; }
+
+.btn-advertencia {
+    background: var(--color-advertencia);
+    color: #ffffff;
+}
+.btn-advertencia:hover { background: #b45309; color: #ffffff; }
+
+.btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.78rem;
+}
+
+/* ---------- Formularios ---------- */
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 0.35rem;
+}
+
+.form-label .requerido {
+    color: var(--color-peligro);
+    margin-left: 0.2rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-texto);
+    background: #ffffff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form-hint {
+    font-size: 0.78rem;
+    color: var(--color-texto-secundario);
+    margin-top: 0.25rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-borde);
+}
+
+/* ---------- Detalle de tarea ---------- */
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.6rem 1rem;
+    font-size: 0.9rem;
+}
+
+.detalle-grid dt {
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+
+.detalle-grid dd {
+    color: var(--color-texto);
+}
+
+/* ---------- Estado vacío ---------- */
+.estado-vacio {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--color-texto-secundario);
+}
+
+.estado-vacio p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* ---------- Títulos de página ---------- */
+.page-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    margin-bottom: 1.5rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    color: var(--color-texto-secundario);
+    font-size: 0.8rem;
+    padding: 2rem 1rem 1rem;
+}

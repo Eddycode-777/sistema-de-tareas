@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ tarea.titulo }} — Sistema de Tareas{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title">Detalle de Tarea</h1>
+        <a href="{{ url_for('tareas.lista') }}" class="btn btn-secundario">&#8592; Volver a la lista</a>
+    </div>
+
+    <dl class="detalle-grid" style="margin-bottom: 1.5rem;">
+        <dt>ID</dt>
+        <dd>{{ tarea.id }}</dd>
+
+        <dt>Título</dt>
+        <dd><strong>{{ tarea.titulo }}</strong></dd>
+
+        <dt>Descripción</dt>
+        <dd>{{ tarea.descripcion if tarea.descripcion else '—' }}</dd>
+
+        <dt>Estado</dt>
+        <dd><span class="badge badge-{{ tarea.estado }}">{{ tarea.estado }}</span></dd>
+
+        <dt>Creada el</dt>
+        <dd>{{ tarea.fecha_creacion }}</dd>
+    </dl>
+
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--color-borde);">
+
+        <!-- Editar -->
+        <a href="{{ url_for('tareas.editar', tarea_id=tarea.id) }}"
+           class="btn btn-advertencia">Editar</a>
+
+        <!-- Completar / Reabrir -->
+        <form method="POST" action="{{ url_for('tareas.completar', tarea_id=tarea.id) }}"
+              style="display: inline;">
+            {% if tarea.estado == 'pendiente' %}
+                <button type="submit" class="btn btn-exito">&#10003; Marcar como completada</button>
+            {% else %}
+                <button type="submit" class="btn btn-secundario">&#8635; Reabrir tarea</button>
+            {% endif %}
+        </form>
+
+        <!-- Eliminar -->
+        <form method="POST" action="{{ url_for('tareas.eliminar', tarea_id=tarea.id) }}"
+              style="display: inline;"
+              onsubmit="return confirm('¿Eliminar esta tarea de forma permanente?')">
+            <button type="submit" class="btn btn-peligro">Eliminar</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
