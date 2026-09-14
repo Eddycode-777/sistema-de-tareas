@@ -36,9 +36,6 @@ def crear():
             flash("El título es obligatorio.", "error")
             return render_template("tareas/crear.html", titulo=titulo, descripcion=descripcion)
 
-        if not titulo:
-            flash("El título es obligatorio.", "error")
-            return render_template("tareas/crear.html", titulo=titulo, descripcion=descripcion)
 
         if len(titulo) > 120:
             flash("El título no puede superar los 120 caracteres.", "error")
