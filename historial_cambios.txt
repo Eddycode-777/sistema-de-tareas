@@ -5,3 +5,4 @@ Este archivo registra los cambios realizados durante la gestión de configuraci�
 1. Se agregó una validación para impedir que las tareas tengan una descripción superior a 500 caracteres.
 
 2. Se verificó el funcionamiento de la validación mediante las pruebas del proyecto.
+3. Se modificó el título del listado de tareas de "Lista de tareas" a "Mis tareas", como mejora de la interfaz.
