@@ -1,0 +1,4 @@
+HISTORIAL DE CAMBIOS
+Sistema Web de Gestión de Tareas
+
+Este archivo registra los cambios realizados durante la gestión de configuración del proyecto.
