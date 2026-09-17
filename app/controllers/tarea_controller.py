@@ -47,7 +47,7 @@ def crear():
 
         Tarea.crear(titulo, descripcion)
 
-        flash(f"Tarea '{titulo}' creada exitosamente.", "success")
+        flash(f"Tarea '{titulo}' creada exitosamente. Ya puedes consultarla en el listado.", "success")
         return redirect(url_for("tareas.lista"))
 
     return render_template("tareas/crear.html", titulo="", descripcion="")
