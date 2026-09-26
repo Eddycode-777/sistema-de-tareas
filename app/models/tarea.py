@@ -68,7 +68,7 @@ class Tarea:
         """Retorna todas las tareas ordenadas por fecha de creación descendente."""
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM tareas ORDER BY fecha_creacion DESC")
+        cursor.execute("SELECT * FROM tareas ORDER BY fecha_creacion DESC, id DESC")
         filas = cursor.fetchall()
         conn.close()
         return [Tarea._from_row(fila) for fila in filas]
